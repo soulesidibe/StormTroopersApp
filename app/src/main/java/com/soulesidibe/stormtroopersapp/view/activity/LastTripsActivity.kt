@@ -1,7 +1,8 @@
-package com.soulesidibe.stormtroopersapp
+package com.soulesidibe.stormtroopersapp.view.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.soulesidibe.stormtroopersapp.R
 
 class LastTripsActivity : AppCompatActivity() {
 
