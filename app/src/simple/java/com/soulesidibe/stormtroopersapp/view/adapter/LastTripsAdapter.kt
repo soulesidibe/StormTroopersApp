@@ -17,12 +17,8 @@ import com.squareup.picasso.Picasso
  */
 class LastTripsAdapter(
     private var trips: MutableList<Trip>,
-    private val onClickListener: TripAdapterOnClick
+    private val onClickListener: (Trip) -> Unit
 ) : RecyclerView.Adapter<LastTripsAdapter.LastTripsViewHolder>() {
-
-    interface TripAdapterOnClick {
-        fun onTripClicked(trip: Trip)
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LastTripsViewHolder {
         val context = parent.context
@@ -56,7 +52,7 @@ class LastTripsAdapter(
 
 
         override fun onClick(v: View?) {
-            onClickListener.onTripClicked(trips[adapterPosition])
+            onClickListener(trips[adapterPosition])
         }
 
         fun bind() {

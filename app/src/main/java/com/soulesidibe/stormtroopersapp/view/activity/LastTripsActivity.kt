@@ -19,7 +19,7 @@ import com.soulesidibe.stormtroopersapp.viewmodel.LastTripsViewModel
 import kotterknife.bindView
 import org.koin.android.ext.android.inject
 
-class LastTripsActivity : AppCompatActivity(), LastTripsAdapter.TripAdapterOnClick {
+class LastTripsActivity : AppCompatActivity() {
 
     private val TAG = "LastTripsActivity"
 
@@ -52,11 +52,13 @@ class LastTripsActivity : AppCompatActivity(), LastTripsAdapter.TripAdapterOnCli
             recyclerView.addItemDecoration(TripsDividerItemDecoration(divider))
         }
 
-        adapter = LastTripsAdapter(mutableListOf(), this)
+        adapter = LastTripsAdapter(mutableListOf()) {
+            onTripClicked(it)
+        }
         recyclerView.adapter = adapter
     }
 
-    override fun onTripClicked(trip: Trip) {
+    fun onTripClicked(trip: Trip) {
         val intent = TripDetailsActivity.getIntent(this, trip.id)
         startActivity(intent)
     }

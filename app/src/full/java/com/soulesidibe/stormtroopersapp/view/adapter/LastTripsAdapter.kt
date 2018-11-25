@@ -19,20 +19,16 @@ import kotlin.math.roundToInt
  */
 class LastTripsAdapter(
     private var trips: MutableList<Trip>,
-    private val onClickListener: TripAdapterOnClick
+    private val onClickListener: (Trip) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
-    interface TripAdapterOnClick {
-        fun onTripClicked(trip: Trip)
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val context = parent.context
         val inflater = LayoutInflater.from(context)
-        if (viewType == WITHOUT_RATING) {
-            return LastTripsViewHolder(inflater.inflate(R.layout.adapter_trip_item, parent, false))
+        return if (viewType == WITHOUT_RATING) {
+            LastTripsViewHolder(inflater.inflate(R.layout.adapter_trip_item, parent, false))
         } else {
-            return LastTripsViewHolderRating(inflater.inflate(R.layout.adapter_trip_item_rating, parent, false))
+            LastTripsViewHolderRating(inflater.inflate(R.layout.adapter_trip_item_rating, parent, false))
         }
     }
 
@@ -71,7 +67,7 @@ class LastTripsAdapter(
         }
 
         override fun onClick(v: View?) {
-            onClickListener.onTripClicked(trips[adapterPosition])
+            onClickListener(trips[adapterPosition])
         }
 
         fun bind() {
@@ -102,7 +98,7 @@ class LastTripsAdapter(
         }
 
         override fun onClick(v: View?) {
-            onClickListener.onTripClicked(trips[adapterPosition])
+            onClickListener(trips[adapterPosition])
         }
 
         fun bind() {
