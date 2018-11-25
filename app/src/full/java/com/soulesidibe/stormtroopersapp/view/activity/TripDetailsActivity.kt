@@ -28,6 +28,8 @@ class TripDetailsActivity : AppCompatActivity() {
 
     private val toolbar by bindView<Toolbar>(R.id.toolbar)
     private val pilotAvatar by bindView<ImageView>(R.id.id_activity_Trip_detail_imageview)
+    private val pickUpPlace by bindView<ImageView>(R.id.id_activity_Trip_detail_pickup_place)
+    private val dropOffPlace by bindView<ImageView>(R.id.id_activity_Trip_detail_dropoff_place)
     private val pilotName by bindView<TextView>(R.id.id_activity_Trip_detail_pilot_name)
     private val departurePlace by bindView<TextView>(R.id.id_activity_Trip_detail_departure)
     private val arrivalPlace by bindView<TextView>(R.id.id_activity_Trip_detail_arrival)
@@ -47,6 +49,8 @@ class TripDetailsActivity : AppCompatActivity() {
 
     private fun showTripDetails(trip: Trip) {
         Picasso.get().load(BuildConfig.API_SERVER + trip.pilot.avatar).into(pilotAvatar)
+        Picasso.get().load(BuildConfig.API_SERVER + trip.pick_up.picture).into(pickUpPlace)
+        Picasso.get().load(BuildConfig.API_SERVER + trip.drop_off.picture).into(dropOffPlace)
         pilotName.text = trip.pilot.name.toUpperCase()
         departurePlace.text = trip.pick_up.name.toUpperCase()
         pickUpTime.text = DateTime.parse(trip.pick_up.date).run {
