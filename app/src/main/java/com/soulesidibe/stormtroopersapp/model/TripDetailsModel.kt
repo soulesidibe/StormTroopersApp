@@ -8,25 +8,26 @@ import io.reactivex.Single
 import retrofit2.Response
 
 /**
- * Created on 11/24/18 at 10:49 PM
+ * Created on 11/25/18 at 1:27 AM
  * Project name : StormTroopersApp
  */
 
-interface LastTripsModel {
 
-    fun getLastTrips(): Single<List<Trip>>
+interface TripDetailsModel {
+
+    fun getTripDetailsBy(id: Int): Single<Trip>
 }
 
-class LastTripsModelImpl(
+class TripDetailsModelImpl(
     private val api: StarWarsAPI,
     private val internetManager: InternetManager
-) : LastTripsModel {
+) : TripDetailsModel {
 
-    override fun getLastTrips(): Single<List<Trip>> = internetManager.whenInternetAvailable {
-        val call = api.getLastTrips()
+    override fun getTripDetailsBy(id: Int): Single<Trip> = internetManager.whenInternetAvailable {
+        val call = api.getTripDetails(id)
 
-        val callback = object : OnSuccess<List<Trip>>(it) {
-            override fun handleResponse(response: Response<List<Trip>>) {
+        val callback = object : OnSuccess<Trip>(it) {
+            override fun handleResponse(response: Response<Trip>) {
                 if (response.code() == 200) {
                     val body = response.body()
                     it.notDisposedOnSuccess(response.body())
@@ -34,7 +35,6 @@ class LastTripsModelImpl(
                     it.notDisposedOnError(NoData())
                 }
             }
-
         }
         call.enqueue(callback)
     }
