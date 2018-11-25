@@ -17,12 +17,12 @@ interface InternetManager {
     fun hasInternet(): Boolean
 }
 
-fun <T> InternetManager.whenInternetAvailable(func: (SingleEmitter<T>) -> Unit): Single<T> {
+fun <T> InternetManager.whenInternetAvailable(func: SingleEmitter<T>.() -> Unit): Single<T> {
     return Single.create { emitter ->
         if (!hasInternet()) {
             emitter.notDisposedOnError(NoInternetException())
         } else {
-            func(emitter)
+            emitter.func()
         }
     }
 }

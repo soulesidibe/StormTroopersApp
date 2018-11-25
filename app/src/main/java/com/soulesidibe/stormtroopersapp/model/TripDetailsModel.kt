@@ -26,13 +26,13 @@ class TripDetailsModelImpl(
     override fun getTripDetailsBy(id: Int): Single<Trip> = internetManager.whenInternetAvailable {
         val call = api.getTripDetails(id)
 
-        val callback = object : OnSuccess<Trip>(it) {
+        val callback = object : OnSuccess<Trip>(this) {
             override fun handleResponse(response: Response<Trip>) {
                 if (response.code() == 200) {
                     val body = response.body()
-                    it.notDisposedOnSuccess(response.body())
+                    notDisposedOnSuccess(response.body())
                 } else {
-                    it.notDisposedOnError(NoData())
+                    notDisposedOnError(NoData())
                 }
             }
         }

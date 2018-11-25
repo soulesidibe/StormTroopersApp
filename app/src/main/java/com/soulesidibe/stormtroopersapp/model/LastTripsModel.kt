@@ -25,13 +25,13 @@ class LastTripsModelImpl(
     override fun getLastTrips(): Single<List<Trip>> = internetManager.whenInternetAvailable {
         val call = api.getLastTrips()
 
-        val callback = object : OnSuccess<List<Trip>>(it) {
+        val callback = object : OnSuccess<List<Trip>>(this) {
             override fun handleResponse(response: Response<List<Trip>>) {
                 if (response.code() == 200) {
                     val body = response.body()
-                    it.notDisposedOnSuccess(body)
+                    notDisposedOnSuccess(body)
                 } else {
-                    it.notDisposedOnError(NoData())
+                    notDisposedOnError(NoData())
                 }
             }
 
