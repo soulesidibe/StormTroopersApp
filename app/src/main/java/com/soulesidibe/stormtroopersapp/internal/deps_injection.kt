@@ -23,5 +23,7 @@ val appModule = module {
     single { get<Retrofit>().create(StarWarsAPI::class.java) }
 
     single<InternetManager> { AndroidInternetManager(androidApplication()) }
+
     single<LastTripsModel> { LastTripsModelImpl(get(), get()) }
+    single<TripDetailsModel> { TripDetailsModelImpl(get(), get()) }
 }
