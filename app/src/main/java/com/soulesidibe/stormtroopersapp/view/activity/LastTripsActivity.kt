@@ -1,49 +1,101 @@
 package com.soulesidibe.stormtroopersapp.view.activity
 
 import android.os.Bundle
-import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.soulesidibe.stormtroopersapp.R
 import com.soulesidibe.stormtroopersapp.Resource
 import com.soulesidibe.stormtroopersapp.ResourceState
 import com.soulesidibe.stormtroopersapp.model.Trip
+import com.soulesidibe.stormtroopersapp.view.TripsDividerItemDecoration
+import com.soulesidibe.stormtroopersapp.view.adapter.LastTripsAdapter
 import com.soulesidibe.stormtroopersapp.viewmodel.LastTripsViewModel
+import kotterknife.bindView
 import org.koin.android.ext.android.inject
 
-class LastTripsActivity : AppCompatActivity() {
+class LastTripsActivity : AppCompatActivity(), LastTripsAdapter.TripAdapterOnClick {
 
     private val TAG = "LastTripsActivity"
 
+    private val recyclerView by bindView<RecyclerView>(R.id.id_activity_lastTrips_recyclerview)
+    private val loadingView by bindView<ConstraintLayout>(R.id.id_activity_lastTrips_loading_layout)
+    private val emptyView by bindView<ConstraintLayout>(R.id.id_activity_operations_empty_layout)
+    private lateinit var adapter: LastTripsAdapter
+
+
     private val lastTripsViewModel: LastTripsViewModel by inject()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_last_trips)
+        setTitle(R.string.str_activity_last_trips_title)
+        initRecyclerView()
+        lastTripsViewModel.observeLastTripsData().observe(this, lastTripsObserver)
+        lastTripsViewModel.getLastTrips()
+    }
+
+    private fun initRecyclerView() {
+        val linearLayoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+        recyclerView.layoutManager = linearLayoutManager
+        recyclerView.setHasFixedSize(true)
+        val divider = ContextCompat.getDrawable(this, R.drawable.ic_devider_center_alone)
+        if (divider != null) {
+            recyclerView.addItemDecoration(TripsDividerItemDecoration(divider))
+        }
+
+        adapter = LastTripsAdapter(mutableListOf(), this)
+        recyclerView.adapter = adapter
+    }
+
+    override fun onTripClicked(trip: Trip) {
+
+    }
+
 
     private val lastTripsObserver = Observer<Resource<List<Trip>>> {
         val status = it.status
         when (status) {
             ResourceState.LOADING -> {
-                Log.d(TAG, "Loading")
+                showLoading()
             }
 
             ResourceState.SUCCESS -> {
                 val trips = it.data
-                trips?.let {
-                    it.forEach { trip ->
-                        Log.d(TAG, trip.toString())
-                    }
+                if (trips == null) {
+                    showEmpty()
+                } else {
+                    showTrips(trips)
                 }
             }
 
             ResourceState.ERROR -> {
-                Log.d(TAG, "Error")
+                showEmpty()
             }
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_last_trips)
+    private fun showEmpty() {
+        recyclerView.visibility = View.GONE
+        loadingView.visibility = View.GONE
+        emptyView.visibility = View.VISIBLE
+    }
 
-        lastTripsViewModel.observeLastTripsData().observe(this, lastTripsObserver)
-        lastTripsViewModel.getLastTrips()
+    private fun showTrips(trips: List<Trip>) {
+        recyclerView.visibility = View.VISIBLE
+        emptyView.visibility = View.GONE
+        loadingView.visibility = View.GONE
+
+        adapter.setTrips(trips)
+    }
+
+    private fun showLoading() {
+        recyclerView.visibility = View.GONE
+        emptyView.visibility = View.GONE
+        loadingView.visibility = View.VISIBLE
     }
 }

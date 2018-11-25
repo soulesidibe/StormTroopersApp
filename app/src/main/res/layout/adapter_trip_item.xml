@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="88dp"
+        android:minHeight="?android:attr/listPreferredItemHeight">
+
+    <ImageView
+            android:id="@+id/id_item_trip_imageview"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginRight="16dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:letterSpacing="0.19"
+            tools:text="ackbar"
+            android:layout_marginTop="22dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="8dp"
+            app:layout_constraintStart_toEndOf="@+id/id_item_trip_imageview" android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp" app:layout_constraintHorizontal_bias="0.0"
+            android:id="@+id/id_item_trip_pilot_name"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:fontFamily="sans-serif-medium"
+            android:textStyle="normal"
+            android:textColor="@color/warm_grey"
+            android:lineSpacingExtra="2sp"
+            tools:text="Naboo"
+            app:layout_constraintTop_toBottomOf="@+id/id_item_trip_pilot_name"
+            app:layout_constraintStart_toEndOf="@+id/id_item_trip_imageview" android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:id="@+id/id_item_trip_pickup"/>
+
+    <ImageView android:layout_width="17dp"
+               android:layout_height="10dp"
+               app:srcCompat="@drawable/ic_arrow"
+               app:layout_constraintStart_toEndOf="@+id/id_item_trip_pickup"
+               android:layout_marginLeft="16dp"
+               android:layout_marginStart="16dp"
+               app:layout_constraintBottom_toBottomOf="@+id/id_item_trip_pickup"
+               app:layout_constraintTop_toTopOf="@+id/id_item_trip_pickup" android:id="@+id/imageView"/>
+
+    <TextView
+            android:id="@+id/id_item_trip_dropoff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:fontFamily="sans-serif-medium"
+            android:textStyle="normal"
+            android:textColor="@color/warm_grey"
+            android:lineSpacingExtra="2sp"
+            tools:text="Tatooine"
+            app:layout_constraintStart_toEndOf="@+id/imageView" android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp" android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginRight="8dp" app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintBaseline_toBaselineOf="@+id/id_item_trip_pickup"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

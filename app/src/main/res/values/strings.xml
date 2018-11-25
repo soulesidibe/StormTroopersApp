@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Storm Troopers App</string>
+    <string name="str_no_trips_found">No trips found :(</string>
+    <string name="str_activity_last_trips_title">Last trips</string>
 </resources>
