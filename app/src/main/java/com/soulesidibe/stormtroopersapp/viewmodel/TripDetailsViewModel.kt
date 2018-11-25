@@ -6,39 +6,39 @@ import androidx.lifecycle.ViewModel
 import com.soulesidibe.stormtroopersapp.BaseSchedulerProvider
 import com.soulesidibe.stormtroopersapp.Resource
 import com.soulesidibe.stormtroopersapp.ResourceState
-import com.soulesidibe.stormtroopersapp.model.LastTripsModel
 import com.soulesidibe.stormtroopersapp.model.Trip
+import com.soulesidibe.stormtroopersapp.model.TripDetailsModel
 import io.reactivex.disposables.CompositeDisposable
 
 /**
  * Created on 11/24/18 at 10:49 PM
  * Project name : StormTroopersApp
  */
-class LastTripsViewModel(
-    private val model: LastTripsModel,
+class TripDetailsViewModel(
+    private val model: TripDetailsModel,
     private val scheduler: BaseSchedulerProvider
 ) : ViewModel() {
 
     private val mDisposable: CompositeDisposable = CompositeDisposable()
 
-    private val lastTripsLiveData: MutableLiveData<Resource<List<Trip>>> = MutableLiveData()
+    private val tripDetailsLiveData: MutableLiveData<Resource<Trip>> = MutableLiveData()
 
-    fun observeLastTripsData(): LiveData<Resource<List<Trip>>> {
-        return lastTripsLiveData
+    fun observeTripData(): LiveData<Resource<Trip>> {
+        return tripDetailsLiveData
     }
 
 
-    fun getLastTrips() {
-        lastTripsLiveData.postValue(Resource(ResourceState.LOADING))
-        val disposable = model.getLastTrips()
+    fun getLastTrips(id: Int) {
+        tripDetailsLiveData.postValue(Resource(ResourceState.LOADING))
+        val disposable = model.getTripDetailsBy(id)
             .subscribeOn(scheduler.io())
             .observeOn(scheduler.ui())
             .subscribe(
                 {
-                    lastTripsLiveData.postValue(Resource(ResourceState.SUCCESS, it))
+                    tripDetailsLiveData.postValue(Resource(ResourceState.SUCCESS, it))
                 },
                 {
-                    lastTripsLiveData.postValue(Resource(ResourceState.ERROR))
+                    tripDetailsLiveData.postValue(Resource(ResourceState.ERROR))
                 }
             )
 
