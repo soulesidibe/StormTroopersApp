@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">Storm Troopers App</string>
     <string name="str_no_trips_found">No trips found :(</string>
-    <string name="str_activity_last_trips_title">Last trips</string>
+    <string name="str_activity_last_trips_title">Last Trips</string>
+    <string name="str_activity_Trip_detail_pilote_rating_label">Pilot Rating</string>
+    <string name="str_activity_Trip_detail_duration_label">Trip Duration</string>
+    <string name="str_activity_Trip_detail_distance_label">Trip Distance</string>
+    <string name="id_activity_Trip_detail_arrival_label">Arrival</string>
+    <string name="id_activity_Trip_detail_departure_label">Departure</string>
+    <string name="id_activity_Trip_detail_norating_label">USER DIDN’T RATE YET</string>
 </resources>

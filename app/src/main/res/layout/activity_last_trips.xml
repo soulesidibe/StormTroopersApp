@@ -8,6 +8,10 @@
         android:background="@drawable/background"
         tools:context=".view.activity.LastTripsActivity">
 
+    <include
+            android:id="@+id/toolbar"
+            layout="@layout/include_default_toolbar"/>
+
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/id_activity_lastTrips_recyclerview"
             android:layout_width="0dp"
@@ -16,9 +20,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:visibility="visible"/>
-    <!--tools:listitem="@layout/adapter_last_operations_items"-->
+            tools:visibility="visible"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/id_activity_lastTrips_loading_layout"
@@ -28,8 +31,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:visibility="gone">
+            tools:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/toolbar">
 
         <ProgressBar
                 android:id="@+id/id_activity_lastTrips_progressBar"
@@ -53,16 +56,12 @@
             android:id="@+id/id_activity_operations_empty_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
             android:visibility="gone"
+            tools:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:visibility="gone">
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar">
 
 
         <TextView

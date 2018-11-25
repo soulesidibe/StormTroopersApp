@@ -16,11 +16,27 @@
                   <entry key="vectorAssetStep">
                     <value>
                       <PersistentState>
+                        <option name="children">
+                          <map>
+                            <entry key="clipartAsset">
+                              <value>
+                                <PersistentState>
+                                  <option name="values">
+                                    <map>
+                                      <entry key="url" value="jar:file:/Applications/Android%20Studio%203.2.app/Contents/plugins/android/lib/android.jar!/images/material_design_icons/navigation/ic_arrow_back_black_24dp.xml" />
+                                    </map>
+                                  </option>
+                                </PersistentState>
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_devider_center_alone" />
-                            <entry key="sourceFile" value="$PROJECT_DIR$/../Assets/center.svg" />
+                            <entry key="color" value="ffffff" />
+                            <entry key="outputName" value="ic_star_filled" />
+                            <entry key="sourceFile" value="$PROJECT_DIR$/../Assets/filled.svg" />
                           </map>
                         </option>
                       </PersistentState>

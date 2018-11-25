@@ -3,6 +3,7 @@ package com.soulesidibe.stormtroopersapp.view.activity
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
@@ -22,6 +23,7 @@ class LastTripsActivity : AppCompatActivity(), LastTripsAdapter.TripAdapterOnCli
 
     private val TAG = "LastTripsActivity"
 
+    private val toolbar by bindView<Toolbar>(R.id.toolbar)
     private val recyclerView by bindView<RecyclerView>(R.id.id_activity_lastTrips_recyclerview)
     private val loadingView by bindView<ConstraintLayout>(R.id.id_activity_lastTrips_loading_layout)
     private val emptyView by bindView<ConstraintLayout>(R.id.id_activity_operations_empty_layout)
@@ -33,7 +35,9 @@ class LastTripsActivity : AppCompatActivity(), LastTripsAdapter.TripAdapterOnCli
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_last_trips)
+        setSupportActionBar(toolbar)
         setTitle(R.string.str_activity_last_trips_title)
+
         initRecyclerView()
         lastTripsViewModel.observeLastTripsData().observe(this, lastTripsObserver)
         lastTripsViewModel.getLastTrips()
@@ -53,7 +57,8 @@ class LastTripsActivity : AppCompatActivity(), LastTripsAdapter.TripAdapterOnCli
     }
 
     override fun onTripClicked(trip: Trip) {
-
+        val intent = TripDetailsActivity.getIntent(this, trip.id)
+        startActivity(intent)
     }
 
 

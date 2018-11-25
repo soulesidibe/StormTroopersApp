@@ -4,6 +4,7 @@ import io.reactivex.SingleEmitter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.NumberFormat
 
 /**
  * Created on 11/24/18 at 11:27 PM
@@ -29,6 +30,14 @@ fun <T> SingleEmitter<T>.notDisposedOnSuccess(t: T?) {
             onSuccess(t)
         }
     }
+}
+
+fun String.formatDistance(): String {
+
+    val instance = NumberFormat.getInstance()
+    instance.minimumFractionDigits = 0
+    instance.isParseIntegerOnly = true
+    return instance.format(this.toDoubleOrNull() ?: 0.0)
 }
 
 abstract class OnSuccess<T : Any>(private val emitter: SingleEmitter<T>) : Callback<T> {
