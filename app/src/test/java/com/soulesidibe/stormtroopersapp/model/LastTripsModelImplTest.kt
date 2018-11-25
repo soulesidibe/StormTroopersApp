@@ -83,7 +83,7 @@ fun getFakeTrips(): List<Trip> {
     return listOf(
         Trip(
             1,
-            Pilot("Dark Vador", "/static/dark-vador.png", 5),
+            Pilot("Dark Vador", "/static/dark-vador.png", 5f),
             Distance(2478572, "km"),
             19427000,
             PlaceInfos("Yavin 4", "/static/yavin-4.png", "2017-12-09T14:12:51Z"),
@@ -91,7 +91,7 @@ fun getFakeTrips(): List<Trip> {
         ),
         Trip(
             2,
-            Pilot("Admiral Ackbar", "/static/admiral-ackbar.png", 0),
+            Pilot("Admiral Ackbar", "/static/admiral-ackbar.png", 0f),
             Distance(24785727853, "km"),
             19427000,
             PlaceInfos("Naboo", "/static/naboo.png", "2017-12-09T14:12:51Z"),

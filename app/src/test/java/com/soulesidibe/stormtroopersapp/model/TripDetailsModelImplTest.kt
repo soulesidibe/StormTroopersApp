@@ -80,7 +80,7 @@ class TripDetailsModelImplTest {
 
 fun getFakeTrip() = Trip(
     1,
-    Pilot("Dark Vador", "/static/dark-vador.png", 5),
+    Pilot("Dark Vador", "/static/dark-vador.png", 5f),
     Distance(2478572, "km"),
     19427000,
     PlaceInfos("Yavin 4", "/static/yavin-4.png", "2017-12-09T14:12:51Z"),
