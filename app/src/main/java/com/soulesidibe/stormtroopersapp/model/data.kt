@@ -15,7 +15,7 @@ data class Trip(
     val drop_off: PlaceInfos
 )
 
-data class Pilot(val name: String, val avatar: String, val rating: Int)
+data class Pilot(val name: String, val avatar: String, val rating: Float)
 
 data class Distance(val value: Long, val unit: String)
 

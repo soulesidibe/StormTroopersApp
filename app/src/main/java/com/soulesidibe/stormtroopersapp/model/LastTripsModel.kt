@@ -29,7 +29,7 @@ class LastTripsModelImpl(
             override fun handleResponse(response: Response<List<Trip>>) {
                 if (response.code() == 200) {
                     val body = response.body()
-                    it.notDisposedOnSuccess(response.body())
+                    it.notDisposedOnSuccess(body)
                 } else {
                     it.notDisposedOnError(NoData())
                 }

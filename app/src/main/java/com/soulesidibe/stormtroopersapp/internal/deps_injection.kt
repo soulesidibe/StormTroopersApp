@@ -6,6 +6,8 @@ import com.soulesidibe.stormtroopersapp.SchedulerProvider
 import com.soulesidibe.stormtroopersapp.model.*
 import com.soulesidibe.stormtroopersapp.viewmodel.LastTripsViewModel
 import com.soulesidibe.stormtroopersapp.viewmodel.TripDetailsViewModel
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidApplication
 import org.koin.android.viewmodel.ext.koin.viewModel
 import org.koin.dsl.module.module
@@ -20,8 +22,23 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 val appModule = module {
 
     single {
+        var okHttpClient = OkHttpClient()
+        if (BuildConfig.DEBUG) {
+            val httpLogging = HttpLoggingInterceptor().let {
+                it.level = HttpLoggingInterceptor.Level.BODY
+                it
+            }
+
+            okHttpClient = okHttpClient.newBuilder()
+                .addNetworkInterceptor(httpLogging)
+                .build()
+        }
+        okHttpClient
+    }
+    single {
         Retrofit.Builder()
             .baseUrl(BuildConfig.API_SERVER)
+            .client(get())
             .addConverterFactory(MoshiConverterFactory.create())
             .build() as Retrofit
     }
