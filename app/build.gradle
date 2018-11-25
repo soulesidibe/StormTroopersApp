@@ -28,6 +28,20 @@ android {
             buildConfigField "String", "API_SERVER", "\"https://starwars.chauffeur-prive.com\""
         }
     }
+
+    flavorDimensions "version"
+    productFlavors {
+        simple {
+            dimension "version"
+            applicationIdSuffix ".simple"
+            versionNameSuffix "-simple"
+        }
+        full {
+            dimension "version"
+            applicationIdSuffix ".full"
+            versionNameSuffix "-full"
+        }
+    }
 }
 
 dependencies {
