@@ -53,7 +53,7 @@ class LastTripsActivity : AppCompatActivity() {
         }
 
         adapter = LastTripsAdapter(mutableListOf()) {
-            onTripClicked(it)
+            onTripClicked(this)
         }
         recyclerView.adapter = adapter
     }
