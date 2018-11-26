@@ -34,7 +34,7 @@ class TripsDividerItemDecoration(private val divider: Drawable) : RecyclerView.I
             val params = child.layoutParams as RecyclerView.LayoutParams
 
             val dividerTop = child.bottom + params.bottomMargin
-            val dividerBottom = dividerTop + divider?.intrinsicHeight
+            val dividerBottom = dividerTop + divider.intrinsicHeight
 
             divider.setBounds(dividerLeft, dividerTop, dividerRight, dividerBottom)
             divider.draw(canvas)

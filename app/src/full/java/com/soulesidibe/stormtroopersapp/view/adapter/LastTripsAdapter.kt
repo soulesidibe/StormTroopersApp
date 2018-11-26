@@ -19,7 +19,7 @@ import kotlin.math.roundToInt
  */
 class LastTripsAdapter(
     private var trips: MutableList<Trip>,
-    private val onClickListener: (Trip) -> Unit
+    private val onClickListener: Trip.() -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -67,7 +67,7 @@ class LastTripsAdapter(
         }
 
         override fun onClick(v: View?) {
-            onClickListener(trips[adapterPosition])
+            trips[adapterPosition].onClickListener()
         }
 
         fun bind() {
@@ -98,7 +98,7 @@ class LastTripsAdapter(
         }
 
         override fun onClick(v: View?) {
-            onClickListener(trips[adapterPosition])
+            trips[adapterPosition].onClickListener()
         }
 
         fun bind() {

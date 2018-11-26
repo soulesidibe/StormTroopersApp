@@ -58,7 +58,7 @@ class LastTripsActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
     }
 
-    fun onTripClicked(trip: Trip) {
+    private fun onTripClicked(trip: Trip) {
         val intent = TripDetailsActivity.getIntent(this, trip.id)
         startActivity(intent)
     }
