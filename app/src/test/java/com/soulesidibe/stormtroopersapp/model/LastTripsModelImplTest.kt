@@ -1,7 +1,10 @@
 package com.soulesidibe.stormtroopersapp.model
 
+import com.soulesidibe.stormtroopersapp.LogTiming
 import com.soulesidibe.stormtroopersapp.NoData
 import com.soulesidibe.stormtroopersapp.NoInternetException
+import com.soulesidibe.stormtroopersapp.TimingRule
+import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mockito
 import org.mockito.Mockito.`when`
@@ -13,6 +16,8 @@ import retrofit2.mock.Calls
  */
 class LastTripsModelImplTest {
 
+    @get:Rule
+    val timingRule = TimingRule()
 
     @Test
     fun `should return internet error when no internet available`() {
@@ -30,6 +35,7 @@ class LastTripsModelImplTest {
     }
 
     @Test
+    @LogTiming
     fun `should return no data when server return 200 but no data available`() {
         val api = Mockito.mock(StarWarsAPI::class.java)
         val internetManager = Mockito.mock(InternetManager::class.java)

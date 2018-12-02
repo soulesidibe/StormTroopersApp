@@ -36,6 +36,7 @@ class LastTripsViewModelTest : KoinTest {
         viewModel.getLastTrips()
 
         val observeLastTripsData = viewModel.observeLastTripsData()
+        //todo verify loading state
         val resource = observeLastTripsData.value
         Assert.assertNotNull(resource)
         Assert.assertThat(resource!!.status, `is`(ResourceState.SUCCESS))

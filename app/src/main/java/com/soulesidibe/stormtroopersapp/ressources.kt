@@ -6,7 +6,7 @@ package com.soulesidibe.stormtroopersapp
  */
 
 
-open class Resource<out T> constructor(
+class Resource<out T> constructor(
     val status: ResourceState = ResourceState.LOADING,
     val data: T? = null,
     val message: String? = null
