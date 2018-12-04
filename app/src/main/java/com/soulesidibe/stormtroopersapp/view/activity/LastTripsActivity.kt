@@ -12,12 +12,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.soulesidibe.stormtroopersapp.R
 import com.soulesidibe.stormtroopersapp.Resource
 import com.soulesidibe.stormtroopersapp.ResourceState
+import com.soulesidibe.stormtroopersapp.internal.ContextModule
+import com.soulesidibe.stormtroopersapp.internal.DaggerLastTripComponent
 import com.soulesidibe.stormtroopersapp.model.Trip
 import com.soulesidibe.stormtroopersapp.view.TripsDividerItemDecoration
 import com.soulesidibe.stormtroopersapp.view.adapter.LastTripsAdapter
 import com.soulesidibe.stormtroopersapp.viewmodel.LastTripsViewModel
 import kotterknife.bindView
-import org.koin.android.ext.android.inject
+import javax.inject.Inject
 
 class LastTripsActivity : AppCompatActivity() {
 
@@ -30,10 +32,15 @@ class LastTripsActivity : AppCompatActivity() {
     private lateinit var adapter: LastTripsAdapter
 
 
-    private val lastTripsViewModel: LastTripsViewModel by inject()
+    @Inject
+    lateinit var lastTripsViewModel: LastTripsViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        DaggerLastTripComponent.builder()
+            .contextModule(ContextModule(applicationContext))
+            .build().inject(this)
+
         setContentView(R.layout.activity_last_trips)
         setSupportActionBar(toolbar)
         setTitle(R.string.str_activity_last_trips_title)

@@ -6,6 +6,7 @@ import com.soulesidibe.stormtroopersapp.NoInternetException
 import com.soulesidibe.stormtroopersapp.notDisposedOnError
 import io.reactivex.Single
 import io.reactivex.SingleEmitter
+import javax.inject.Inject
 
 /**
  * Created on 11/24/18 at 11:22 PM
@@ -28,7 +29,7 @@ fun <T> InternetManager.whenInternetAvailable(func: SingleEmitter<T>.() -> Unit)
 }
 
 
-class AndroidInternetManager(private val context: Context) : InternetManager {
+class AndroidInternetManager @Inject constructor(private val context: Context) : InternetManager {
 
     override fun hasInternet(): Boolean {
         val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager

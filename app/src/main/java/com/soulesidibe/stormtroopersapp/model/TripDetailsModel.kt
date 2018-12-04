@@ -6,6 +6,7 @@ import com.soulesidibe.stormtroopersapp.notDisposedOnError
 import com.soulesidibe.stormtroopersapp.notDisposedOnSuccess
 import io.reactivex.Single
 import retrofit2.Response
+import javax.inject.Inject
 
 /**
  * Created on 11/25/18 at 1:27 AM
@@ -18,7 +19,7 @@ interface TripDetailsModel {
     fun getTripDetailsBy(id: Int): Single<Trip>
 }
 
-class TripDetailsModelImpl(
+class TripDetailsModelImpl @Inject constructor(
     private val api: StarWarsAPI,
     private val internetManager: InternetManager
 ) : TripDetailsModel {

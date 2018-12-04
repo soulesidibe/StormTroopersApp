@@ -6,6 +6,7 @@ import com.soulesidibe.stormtroopersapp.notDisposedOnError
 import com.soulesidibe.stormtroopersapp.notDisposedOnSuccess
 import io.reactivex.Single
 import retrofit2.Response
+import javax.inject.Inject
 
 /**
  * Created on 11/24/18 at 10:49 PM
@@ -17,7 +18,7 @@ interface LastTripsModel {
     fun getLastTrips(): Single<List<Trip>>
 }
 
-class LastTripsModelImpl(
+class LastTripsModelImpl @Inject constructor(
     private val api: StarWarsAPI,
     private val internetManager: InternetManager
 ) : LastTripsModel {

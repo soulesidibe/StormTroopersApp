@@ -9,12 +9,13 @@ import com.soulesidibe.stormtroopersapp.ResourceState
 import com.soulesidibe.stormtroopersapp.model.Trip
 import com.soulesidibe.stormtroopersapp.model.TripDetailsModel
 import io.reactivex.disposables.CompositeDisposable
+import javax.inject.Inject
 
 /**
  * Created on 11/24/18 at 10:49 PM
  * Project name : StormTroopersApp
  */
-class TripDetailsViewModel(
+class TripDetailsViewModel @Inject constructor(
     private val model: TripDetailsModel,
     private val scheduler: BaseSchedulerProvider
 ) : ViewModel() {

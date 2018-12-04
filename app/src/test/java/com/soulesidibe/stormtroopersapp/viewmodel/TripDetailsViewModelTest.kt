@@ -10,7 +10,6 @@ import org.hamcrest.CoreMatchers.`is`
 import org.junit.Assert
 import org.junit.Rule
 import org.junit.Test
-import org.koin.test.KoinTest
 import org.mockito.Mockito
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.verify
@@ -20,7 +19,7 @@ import org.mockito.internal.verification.VerificationModeFactory
  * Created on 11/25/18 at 1:59 AM
  * Project name : StormTroopersApp
  */
-class TripDetailsViewModelTest : KoinTest {
+class TripDetailsViewModelTest {
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()

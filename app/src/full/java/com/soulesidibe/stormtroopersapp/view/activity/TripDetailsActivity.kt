@@ -13,13 +13,15 @@ import androidx.constraintlayout.widget.Group
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.soulesidibe.stormtroopersapp.*
+import com.soulesidibe.stormtroopersapp.internal.ContextModule
+import com.soulesidibe.stormtroopersapp.internal.DaggerTripDetailsComponent
 import com.soulesidibe.stormtroopersapp.model.Trip
 import com.soulesidibe.stormtroopersapp.viewmodel.TripDetailsViewModel
 import com.squareup.picasso.Picasso
 import kotterknife.bindView
 import kotterknife.bindViews
 import org.joda.time.DateTime
-import org.koin.android.ext.android.inject
+import javax.inject.Inject
 import kotlin.math.roundToInt
 
 class TripDetailsActivity : AppCompatActivity() {
@@ -95,12 +97,18 @@ class TripDetailsActivity : AppCompatActivity() {
         "${trip.distance.value.toString().formatDistance()} ${trip.distance.unit.toUpperCase()}"
 
 
-    private val tripDetailsViewModel: TripDetailsViewModel by inject()
+    @Inject
+    lateinit var tripDetailsViewModel: TripDetailsViewModel
 
     private val tripId: Int by lazy { intent.getIntExtra(INTENT_EXTRA_TRIP_ID, 0) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        DaggerTripDetailsComponent.builder()
+            .contextModule(ContextModule(applicationContext))
+            .build().inject(this)
+
         setContentView(R.layout.activity_trip_details)
         setSupportActionBar(toolbar)
 
